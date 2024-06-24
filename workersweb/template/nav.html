@@ -1,0 +1,31 @@
+<nav class="sticky inset-0 flex items-center py-15 min-h-19  justify-between bg-gray-100 border-b w-full backdrop-blur-lg z-50">
+  <div class="text-center ms-5 text-2xl  font-bold" >
+    <a class="" href="/">workers<span class="text-orange-600 leading-normal">web</span></a>
+  </div>
+  <ul class="flex justify-evenly space-x-8 text-xl p-3 font-mono ">
+    {% if request.user.is_authenticated %}
+   
+    <li class="bg-orange-500 text-orange-50 text-lg p-1 rounded font-sans">
+      <a class="" href="{% url 'login' %}"   >get started</a></li>
+    {% else %}
+    <li class="hover:bg-gray-200 rounded p-1 transition-colors ">
+      <a href="{% url 'find_worker' %}" class="">find worker</a></li>
+    <li class="hover:bg-gray-200 rounded p-1 transition-colors">
+      <a class="" href="{% url 'works' %}">works</a>
+    </li>
+    <li class="hover:bg-gray-200 rounded p-1 transition-colors">
+      <a class="" href="{% url 'be-a-worker' %}">be a worker</a>
+    </li>
+    {% if not request.user.is_superuser %}
+    <li class="hover:bg-gray-200 rounded p-1 transition-colors"><a class="" href="#">Dashboard ✨ </a></li>
+    {% endif %}
+  </ul>
+  <div class=" me-5 flex gap-4 p-2 text-gray-500 items-center text-xl ">
+    <span class="hover:bg-gray-200 rounded-full p-1 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" class=""><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.019 17h-6.04m6.04 0h3.614c1.876 0 1.559-1.86.61-2.804C15.825 10.801 20.68 3 11.999 3c-8.68 0-3.825 7.8-7.243 11.196c-.913.908-1.302 2.804.61 2.804H8.98m6.039 0c0 1.925-.648 4-3.02 4c-2.371 0-3.02-2.075-3.02-4"/></svg>
+    </span>
+    <img class="rounded-full text-center border-2 " src="" alt="user" height="60" width="60" />
+    
+  </div>
+  {% endif %}
+</nav>

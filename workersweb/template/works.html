@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+
+{% block 'container' %}
+
+<div class="px-24 py-20 ">
+    
+    <div class="">
+        <h1 class="text-3xl text-gray-800">Works </h1>
+        <div class="bg-gray-100 p-4 shadow mt-8" role="list">
+            <ul class="divide-y-2 divide-gray-300">
+                <li class="bg-stone-100   space-y-2 flex justify-between p-4 m-4 hover:bg-slate-200 transition-colors ">
+                    <div class="">
+                        <p class="text-xl font-bold">Workname</p>
+                        <p class="text-md font-semibold text-gray-700 ">work desc</p>
+                        <p class=" text-md font-mono font-normal text-gray-700">worker</p>
+                    </div>
+                    <div>
+                        <span class="text-sm border border-green-600 bg-green-300 text-green-800 font-mono rounded-full p-2 font-semibold ">state</span>
+
+                    </div>    
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

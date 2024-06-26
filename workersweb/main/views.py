@@ -14,8 +14,15 @@ def home(request):
   
 def find_worker(request):
   
-  
-  workers = Worker.objects.all()
+  if request.method == "POST":
+    search_key = request.POST.get('search_key')
+    print(search_key)
+    workers = Worker.objects.filter(name__contains=search_key)
+    if not workers:
+      print('kskd')
+      workers = Worker.objects.filter(job_title__contains=search_key)
+  elif request.method == "GET":
+    workers = Worker.objects.all()
   
   for i in workers:
     print(i.avatar.url)
@@ -120,4 +127,11 @@ def logout_user(request):
   if request.user.is_authenticated:
     logout(request)
     return redirect(home)
+  return redirect(login_user)
+  
+  
+def worker(request,pk):
+  if request.user.is_authenticated:
+    worker = Worker.objects.get(pk=pk)
+    return render(request,'worker.html',{'worker':worker})
   return redirect(login_user)

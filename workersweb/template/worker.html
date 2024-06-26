@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+
+{% block 'container' %}
+
+<div class="px-10 py-18">
+  <header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex flex-col space-y-4 items-center ">
+    
+      <img class="w-40 h-40 rounded-full ring-1 ring-gray-300" src="{{ worker.avatar.url }}" alt="" />
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 leading-6">{{worker}}</h1>
+        <h1 class="text-2xl font-semibold tracking-tight text-gray-700 leading-4">{{worker.job_title}}</h1>
+    </div>
+  </header>
+  <main>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="border-b border-gray-900/10 pb-12 mt-12">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Job profile</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">{{ worker.job_title}} with {{ worker.experience }} year experience</p>
+  
+        <div class="mt-10 space-y-10">
+             <div class="sm:col-span-2">
+            <label for="job-title" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
+            <div class="mt-2">
+             {{ worker.district }}-{{ worker.city}}
+            </div>
+          </div>
+        </div>
+        <div class="sm:col-span-2">
+         
+          
+          
+            <div class="col-span-full">
+
+            <div class="mt-2 flex items-center gap-x-3">
+             <label for="resume" class="block text-lg font-medium leading-6 text-gray-900">check my resume</label>
+              <a class="block text-sm font-medium leading-6 text-blue-600" href="{{ worker.resume.url }}" download>click here</a>
+            </div>
+          </div>
+
+      </div>
+         
+      </div>
+    </div>
+  </main>
+</div>
+
+
+{% endblock %}

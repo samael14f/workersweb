@@ -14,4 +14,5 @@ urlpatterns = [
   path('worker-signup/',worker_signup,name="worker-signup"),
   path('signup/',signup,name="signup"),
   path('logout/',logout_user,name='logout'),
+  path('worker/<int:pk>',worker,name='worker'),
   ] 

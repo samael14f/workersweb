@@ -135,3 +135,36 @@ def worker(request,pk):
     worker = Worker.objects.get(pk=pk)
     return render(request,'worker.html',{'worker':worker})
   return redirect(login_user)
+  
+  
+def request_work(request,pk):
+  if not request.user.is_authenticated:
+    return redirect(login_user)
+    
+  worker = Worker.objects.get(pk=pk)
+  if request.method == 'POST':
+    name = request.POST.get('name')
+    desc = request.POST.get('desc')
+    date = request.POST.get('date')
+    
+    print(name,desc,date)
+    
+    WorkRequest.objects.create(user=request.user,name=name,desc=desc,date=date,worker=worker)
+    
+    
+  
+  return render(request,'request_work.html',{'worker':worker})
+  
+
+def work_notifications(request):
+  if not request.user.is_authenticated:
+    return redirect(login_user)
+  
+  if request.method == "POST":
+    pass
+  
+  elif request.method == 'GET':
+    pass
+  work_request = WorkRequest.objects.all()
+    
+  return render(request,'work_notification.html',{'work_requests':work_request})

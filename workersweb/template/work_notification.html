@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+
+{% block 'container' %}
+
+<div class="p-24">
+  
+  <div class="bg-gray-100">
+    
+    {% for wr in work_requests %}
+      {% if wr.worker.user_id == request.user or wr.user == request.user %}
+      {{ wr.name }}
+      {{ wr.desc }}
+      {{ wr.date }}
+      {{ wr.is_accepted }}
+      {% endif %}
+    {% endfor %}
+    
+  </div>
+  
+  
+</div>
+
+
+{% endblock %}

@@ -95,4 +95,14 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     
+class WorkRequest(models.Model):
+  
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    worker = models.ForeignKey(Worker,on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    desc = models.TextField()
+    is_accepted = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField()
+    
     

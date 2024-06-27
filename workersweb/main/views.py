@@ -160,11 +160,7 @@ def work_notifications(request):
   if not request.user.is_authenticated:
     return redirect(login_user)
   
-  if request.method == "POST":
-    pass
   
-  elif request.method == 'GET':
-    pass
   work_request = WorkRequest.objects.all()
     
   return render(request,'work_notification.html',{'work_requests':work_request})

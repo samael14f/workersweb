@@ -164,3 +164,18 @@ def work_notifications(request):
   work_request = WorkRequest.objects.all()
     
   return render(request,'work_notification.html',{'work_requests':work_request})
+  
+  
+def work_authorizer(request,pk):
+  if request.method == "POST":
+    work_request = WorkRequest.objects.get()
+    is_accepted = bool(int(request.POST.get('a_btn')))
+    work_request.is_accepted = is_accepted
+    work_request.save()
+    
+    Work.objects.create(name=work_request.name,desc=work_request.desc,work_by=work_request.user,worker=work_request.worker,date=work_request.date)
+    
+    
+    
+    
+  return redirect(work_notifications)

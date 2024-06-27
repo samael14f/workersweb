@@ -76,7 +76,8 @@ class Work(models.Model):
     desc = models.TextField()
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    date = models.DateField(null=True)
+    is_cancelled = models.BooleanField(default=False)
     def __str__(self):
       return self.name
      

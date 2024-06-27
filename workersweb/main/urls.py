@@ -16,6 +16,6 @@ urlpatterns = [
   path('logout/',logout_user,name='logout'),
   path('worker/<int:pk>',worker,name='worker'),
   path('work-request/<int:pk>', request_work,name='request_work'),
-  path('work-notifications',work_notifications,name="work-notifications")
-  
+  path('work-notifications/',work_notifications,name="work-notifications"),
+  path('work-notifications/work-authorizer/<int:pk>',work_authorizer,name="work-authorizer"),
   ] 

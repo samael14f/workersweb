@@ -42,7 +42,7 @@
         
       </div>
     {% if wr.worker.user_id == request.user %}
-      <form class="flex items-center justify-end mx-4 bg-gray-200 pt-3 border-t border-gray-500" action="" method="post" accept-charset="utf-8">
+      <form class="flex items-center justify-end mx-4 bg-gray-200 pt-3 border-t border-gray-500" action="{% url 'work-authorizer' wr.id %} " method="post" accept-charset="utf-8">
         
         {% csrf_token %}
         <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-semibold rounded text-lg px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" value='1' name="a_btn">Accept</button>

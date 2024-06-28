@@ -47,7 +47,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    
+class Profile(models.Model):
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    avatar = models.ImageField(upload_to='uploads/avatars')
+    district = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    street_address = models.TextField()
+    pin = models.CharField(max_length=6)
+    phone_no = models.CharField(max_length=15)
             
 class Worker(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)

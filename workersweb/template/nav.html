@@ -21,7 +21,7 @@
     
     
     <li class="hover:bg-gray-200 rounded p-1 transition-colors">
-      <a class="" href="#">jobs</a>
+      <a class="" href="{% url 'jobs' %}">jobs</a>
     </li>
     {% endif %}
     {% if request.user.is_superuser %}
@@ -36,10 +36,10 @@
     <img class="rounded-full text-center border-2 " src="{{ request.user..avatar.url }}" alt="user" height="60" width="60" />
     
   
-  <div className="w-[220px] absolute top-[60px] right-0 bg-white border rounded-xl shadow-md flex flex-col cursor-pointer" id='modalList'>
+  <div className=" absolute w-[220px] top-[60px] right-0 bg-white border rounded-xl shadow-md flex flex-col cursor-pointer" id='modalList'>
     <ul class="">
       <li className="px-5 py-4 cursor-pointer hover:bg-gray-100 transition">
-        <a href="#">profile</a>
+        <a href="{% url "profile" 1 %}">profile</a>
       </li>
       <li className="px-5 py-4 cursor-pointer hover:bg-gray-100 transition" >
         <a href="{% url 'logout' %}">logout</a>
@@ -49,13 +49,3 @@
   </div>
   {% endif %}
 </nav>
-
-<script type="text/javascript" charset="utf-8">
-  const menu = document.getElementById('modalMenu');
-  const menuList = document.getElementById('modalList');
-  menuList.addEventListener('onclick',() =>{
-    
-    menuList.style.display == 'flex' ? menuList.style.display = 'none' : menuList.style.display = 'flex'
-    
-  });
-</script>

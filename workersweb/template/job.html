@@ -1,3 +1,4 @@
+
 {% extends 'layout.html' %}
 
 
@@ -6,11 +7,11 @@
 <div class="px-24 py-20 ">
     
     <div class="">
-        <h1 class="text-3xl text-gray-800">Works </h1>
+        <h1 class="text-3xl text-gray-800">Jobs </h1>
         <div class="bg-gray-100 p-4 shadow mt-8" role="list">
             <ul class="divide-y-2 divide-gray-300">
                 {% for work in works %}
-                {% if  work.work_by == request.user %}
+                {% if work.worker.user_id == request.user or work.work_by == request.user %}
                 <li class="bg-stone-100   space-y-2 flex justify-between p-4 m-4 hover:bg-slate-200 transition-colors ">
                     <div class="">
                         <p class="text-xl font-bold">{{ work.name }}</p>

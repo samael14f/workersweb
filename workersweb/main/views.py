@@ -4,7 +4,7 @@ from .models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login , logout
 from .lib import *
-
+from datetime import date
 
 # Create your views here.
 def home(request):
@@ -60,8 +60,12 @@ def login_user(request):
   return render(request,'login.html')
 
 def works(request):
-  return render(request,'works.html')
+  works = Work.objects.all()
+  return render(request,'works.html',{'works':works})
 
+def jobs(request):
+  works = Work.objects.all()
+  return render(request,'job.html',{"works":works})
 
 def signup(request):
   if request.method == 'POST':
@@ -159,11 +163,12 @@ def request_work(request,pk):
 def work_notifications(request):
   if not request.user.is_authenticated:
     return redirect(login_user)
-  
-  
+
+  today = date.today()
+  print(today)
   work_request = WorkRequest.objects.all()
     
-  return render(request,'work_notification.html',{'work_requests':work_request})
+  return render(request,'work_notification.html',{'work_requests':work_request,"today":today})
   
   
 def work_authorizer(request,pk):
@@ -175,7 +180,8 @@ def work_authorizer(request,pk):
     
     Work.objects.create(name=work_request.name,desc=work_request.desc,work_by=work_request.user,worker=work_request.worker,date=work_request.date)
     
-    
-    
-    
   return redirect(work_notifications)
+
+
+def profile(request,pk):
+  return render(request,'profile.html')

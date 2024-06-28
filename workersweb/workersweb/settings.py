@@ -22,7 +22,7 @@ AUTH_USER_MODEL = 'main.User'
 
 WEBSITE_URL = 'http://localhost:8000'
 
-if sys.platform == 'windows':
+if sys.platform == 'win32':
   NPM_BIN_PATH = "npm.cmd"
 
 TAILWIND_APP_NAME = 'theme'

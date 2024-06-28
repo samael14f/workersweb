@@ -183,5 +183,10 @@ def work_authorizer(request,pk):
   return redirect(work_notifications)
 
 
-def profile(request,pk):
-  return render(request,'profile.html')
+def profile(request):
+  if Profile.objects.filter(user_id=request.user).exists():
+    profile = Profile.objects.get(user_id=request.user)
+  else:
+    profile = None
+
+  return render(request,'profile.html',{'Profile':profile})

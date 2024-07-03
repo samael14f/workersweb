@@ -184,12 +184,23 @@ def work_authorizer(request,pk):
 
 
 def profile(request):
+  profile=None
+  worker=None
+  
   if Profile.objects.filter(user_id=request.user).exists():
     profile = Profile.objects.get(user_id=request.user)
-  else:
-    profile = None
+  if Worker.objects.filter(user_id=request.user).exists():
+    
+    worker = Worker.objects.get(user_id=request.user)
+    print("exists 1212")
+  
+  if request.method == 'POST':
+    available = request.POST.get('available')
+    worker = Worker.objects.get(user_id=request.user)
+    print(available)
+    # worker.is_available =
 
-  return render(request,'profile.html',{'Profile':profile})
+  return render(request,'profile.html',{'Profile':profile,"worker":worker})
   
  
 def add_profile(request):

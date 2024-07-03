@@ -190,3 +190,18 @@ def profile(request):
     profile = None
 
   return render(request,'profile.html',{'Profile':profile})
+  
+ 
+def add_profile(request):
+  if request.method == 'POST':
+    name = request.POST.get('name')
+    district = request.POST.get('district')
+    phone_no = request.POST.get('phone_no')
+    city = request.POST.get('city')
+    street_address = request.POST.get('street_address')
+    pin = request.POST.get('pin')
+    avatar = request.FILES.get('avatar')
+    Profile.objects.create(name=name,district=district,phone_no=phone_no,city=city,street_address=street_address,pin=pin,avatar=avatar,user_id=request.user)
+    return redirect(profile)
+    
+  return render(request,'add_profile.html',{'district':district_list})

@@ -44,8 +44,33 @@
       </div>
          
       </div>
+      
     </div>
   </main>
+{% if reviews %}
+<div class="bg-white p-4 text-2xl mt-4 shadow">
+  <h1 class="text-2xl text-gray-700 font-bold  mb-8">Reviews</h1>
+  {% for review in reviews %}
+  <div class=" flex flex-col space-x-4 mb-4 space-y-4 p-2">
+    
+  
+  <div class="flex items-center justify-between border-b border-gray-300 mb-1">
+    
+  
+     <p class="text-base text-gray-700 font-bold "> {{ review.user}}</p>
+     <p class="text-sm text-gray-500 font
+     -semibold "> {{ review.created_at }} </p>
+
+    </div>
+    <p class="text-2xl text-gray-700 font-bold leading-4">
+      {{ review.body }}
+    </p>
+</div>
+
+  {% endfor %}
+</div>
+  {% endif %}
+
 </div>
 
 

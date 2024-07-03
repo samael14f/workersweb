@@ -86,6 +86,7 @@ class Work(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     date = models.DateField(null=True)
     is_cancelled = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
     def __str__(self):
       return self.name
      
@@ -99,6 +100,7 @@ class UserAddress(models.Model):
     
 class Review(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    work = models.ForeignKey(Work,on_delete=models.CASCADE)
     body = models.TextField()
     worker = models.ForeignKey(Worker,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -8,11 +8,14 @@
     
     <div class="">
         <h1 class="text-3xl text-gray-800">Jobs </h1>
-        <div class="bg-gray-100 p-4 shadow mt-8" role="list">
+        <div class="bg-gray-50 p-4 shadow mt-8" role="list">
             <ul class="divide-y-2 divide-gray-300">
+           
                 {% for work in works %}
-                {% if work.worker.user_id == request.user or work.work_by == request.user %}
-                <li class="bg-stone-100   space-y-2 flex justify-between p-4 m-4 hover:bg-slate-200 transition-colors ">
+                {% if work.worker.user_id == request.user %}
+
+                <li class="bg-gray-100   space-y-2 flex justify-between p-4 m-4 hover:bg-slate-00 transition-colors ">
+                    <a href="{% url 'work-or-job' work.id %}">
                     <div class="">
                         <p class="text-xl font-bold">{{ work.name }}</p>
                         <p class="text-md font-semibold text-gray-700 ">{{ work.desc }}</p>
@@ -34,9 +37,13 @@
 
                         {% endif %}
                     </div>    
+                    </a>
                 </li>
+                
                 {% endif %}
                 {% endfor %}
+                
+            
             </ul>
         </div>
     </div>

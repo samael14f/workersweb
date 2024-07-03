@@ -135,9 +135,13 @@ def logout_user(request):
   
   
 def worker(request,pk):
+  
   if request.user.is_authenticated:
     worker = Worker.objects.get(pk=pk)
-    return render(request,'worker.html',{'worker':worker})
+    review = Review.objects.filter(worker=worker)
+    if Review.objects.filter(worker=worker).exists():
+      print('achumoi')
+    return render(request,'worker.html',{'worker':worker, 'reviews':review})
   return redirect(login_user)
   
   
@@ -197,7 +201,10 @@ def profile(request):
   if request.method == 'POST':
     available = request.POST.get('available')
     worker = Worker.objects.get(user_id=request.user)
-    print(available)
+   
+    worker.is_available = available & False
+    print('iikxk',type(available))
+    worker.save()
     # worker.is_available =
 
   return render(request,'profile.html',{'Profile':profile,"worker":worker})
@@ -216,3 +223,22 @@ def add_profile(request):
     return redirect(profile)
     
   return render(request,'add_profile.html',{'district':district_list})
+  
+  
+def work_or_job(request,pk):
+  work = Work.objects.get(pk=pk)
+  review = Review.objects.filter(work=work)
+  if request.method == 'POST':
+    is_completed = bool(int(request.POST.get('is_completed')))
+    work.is_completed = is_completed
+    work.save()
+    return redirect(work_or_job,work.id)
+  return render(request,'work_or_job.html',{"work":work,'reviews':review})
+  
+  
+def add_review(request,work_id):
+  if request.method == 'POST':
+    body = request.POST.get('body')
+    work = Work.objects.get(pk=work_id)
+    Review.objects.create(user=work.work_by,body=body,worker=work.worker,work=work)
+  return redirect(work_or_job,work_id)

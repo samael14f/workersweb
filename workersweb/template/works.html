@@ -12,7 +12,7 @@
              
                 {% for work in works %}
                 {% if  work.work_by == request.user %}
-                <a href="{% url 'work-or-job' work.id %}">
+                <a href="{% url 'work-or-job' work.id %}" class="hidden">
                 <li class="bg-stone-100   space-y-2 flex justify-between p-4 m-4 hover:bg-slate-200 transition-colors ">
                     <div class="">
                         <p class="text-xl font-bold">{{ work.name }}</p>
@@ -26,7 +26,7 @@
                         {% endif %}
                     </div>
                     <div>
-                        {% if work.status %}
+                        {% if work.is_completed %}
                         <span class="text-sm border border-green-600 bg-green-300 text-green-800 font-mono rounded-full p-2 font-semibold ">completed</span>
                         {% elif not work.status and not work.is_cancelled %}
                         <span class="text-sm border border-stone-600 bg-stone-300 text-stone-800 font-mono rounded-full p-2 font-semibold ">not completed</span>

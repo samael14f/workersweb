@@ -16,8 +16,11 @@ def find_worker(request):
   
   if request.method == "POST":
     search_key = request.POST.get('search_key')
-    print(search_key)
-    workers = Worker.objects.filter(name__contains=search_key)
+    district = request.POST.get('district')
+    print(search_key,district)
+    if not district:
+      workers = Worker.objects.filter(name__contains=search_key)
+    workers = Worker.objects.filter(name__contains,district=district)
     if not workers:
       print('kskd')
       workers = Worker.objects.filter(job_title__contains=search_key)
@@ -27,7 +30,7 @@ def find_worker(request):
   for i in workers:
     print(i.avatar.url)
   
-  return render(request,'findworker.html',{'workers': workers})
+  return render(request,'findworker.html',{'workers': workers,'districts':district_list})
   
 def login_user(request):
   if request.method == 'POST':
@@ -139,8 +142,7 @@ def worker(request,pk):
   if request.user.is_authenticated:
     worker = Worker.objects.get(pk=pk)
     review = Review.objects.filter(worker=worker)
-    if Review.objects.filter(worker=worker).exists():
-      print('achumoi')
+    
     return render(request,'worker.html',{'worker':worker, 'reviews':review})
   return redirect(login_user)
   
@@ -202,8 +204,8 @@ def profile(request):
     available = request.POST.get('available')
     worker = Worker.objects.get(user_id=request.user)
    
-    worker.is_available = available & False
-    print('iikxk',type(available))
+    worker.is_available = available == 'True'
+    print('iikxk',type(available),available)
     worker.save()
     # worker.is_available =
 
@@ -240,5 +242,7 @@ def add_review(request,work_id):
   if request.method == 'POST':
     body = request.POST.get('body')
     work = Work.objects.get(pk=work_id)
+    print('user',work.work_by)
+    print('worker',work.worker)
     Review.objects.create(user=work.work_by,body=body,worker=work.worker,work=work)
   return redirect(work_or_job,work_id)

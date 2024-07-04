@@ -28,7 +28,7 @@
                         {% endif %}
                     </div>
                     <div>
-                        {% if work.status %}
+                        {% if work.is_completed %}
                         <span class="text-sm border border-green-600 bg-green-300 text-green-800 font-mono rounded-full p-2 font-semibold ">completed</span>
                         {% elif not work.status and not work.is_cancelled %}
                         <span class="text-sm border border-stone-600 bg-stone-300 text-stone-800 font-mono rounded-full p-2 font-semibold ">not completed</span>
